@@ -178,18 +178,32 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 36px;
+      gap: 28px;
       list-style: none;
     }
-    .nav-links a {
+
+    /* Nav items — shared trigger styles */
+    .nav-item { position: relative; list-style: none; }
+    .nav-item > a,
+    .nav-trigger {
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.05em;
       color: var(--white-70);
-      transition: color var(--transition);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
       position: relative;
+      white-space: nowrap;
+      transition: color var(--transition);
+      font-family: var(--font-sans);
     }
-    .nav-links a::after {
+    .nav-item > a::after,
+    .nav-trigger::after {
       content: '';
       position: absolute;
       bottom: -4px; left: 0; right: 0;
@@ -199,8 +213,117 @@
       transition: transform var(--transition);
       transform-origin: left;
     }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-item:hover > a,
+    .nav-item:hover .nav-trigger,
+    .nav-item:focus-within .nav-trigger { color: var(--white); }
+    .nav-item:hover > a::after,
+    .nav-item:hover .nav-trigger::after,
+    .nav-item:focus-within .nav-trigger::after { transform: scaleX(1); }
+    .nav-trigger svg { transition: transform var(--transition); }
+    .nav-item:hover .nav-trigger svg { transform: rotate(180deg); }
+
+    /* Dropdown panel */
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 18px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 220px;
+      background: rgba(12,12,12,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-dim);
+      border-top: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+      z-index: 200;
+    }
+    .nav-item:hover .nav-dropdown,
+    .nav-item:focus-within .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a {
+      display: block;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--white-70);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition), padding-left 0.2s ease;
+    }
+    .nav-dropdown a:hover {
+      color: var(--white);
+      background: rgba(201,168,76,0.07);
+      padding-left: 24px;
+    }
+    .nav-dropdown hr {
+      border: none;
+      border-top: 1px solid var(--border-dim);
+      margin: 4px 0;
+    }
+
+    /* Communities flyout */
+    .nav-dropdown-communities { min-width: 180px; }
+    .city-item { position: relative; }
+    .city-item > .city-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white-70);
+      cursor: default;
+      gap: 24px;
+      transition: color var(--transition), background var(--transition);
+    }
+    .city-item:hover > .city-trigger {
+      color: var(--gold);
+      background: rgba(201,168,76,0.07);
+    }
+    .city-trigger svg { transition: transform var(--transition); opacity: 0.5; }
+    .city-item:hover .city-trigger svg { opacity: 1; transform: translateX(2px); }
+    .city-submenu {
+      position: absolute;
+      left: 100%;
+      top: -6px;
+      min-width: 200px;
+      background: rgba(12,12,12,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-dim);
+      border-left: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-6px);
+      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+      z-index: 201;
+    }
+    .city-item:hover .city-submenu,
+    .city-item:focus-within .city-submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+    .city-submenu a {
+      display: block;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: var(--white-70);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition), padding-left 0.15s ease;
+    }
+    .city-submenu a:hover {
+      color: var(--white);
+      background: rgba(201,168,76,0.07);
+      padding-left: 20px;
+    }
     .nav-cta {
       display: flex;
       align-items: center;
@@ -246,21 +369,60 @@
       border-bottom: 1px solid var(--border-dim);
     }
     .nav-mobile.open { display: block; }
-    .nav-mobile ul {
-      list-style: none;
+    .nav-mobile .nav-cta { display: inline-flex; font-size: 15px; }
+
+    /* Mobile accordion */
+    .mob-group {
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .mob-group-toggle {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-    .nav-mobile ul a {
-      font-size: 18px;
-      font-weight: 400;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 500;
       color: var(--white-70);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: color var(--transition);
     }
-    .nav-mobile .nav-cta {
-      display: inline-flex;
-      font-size: 15px;
+    .mob-group-toggle.open { color: var(--gold); }
+    .mob-group-toggle svg { transition: transform var(--transition); }
+    .mob-group-toggle.open svg { transform: rotate(180deg); }
+    .mob-submenu {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      padding-bottom: 12px;
+    }
+    .mob-submenu.open { display: flex; }
+    .mob-submenu li a {
+      display: block;
+      padding: 9px 12px;
+      font-size: 14px;
+      color: var(--white-40);
+      transition: color var(--transition);
+    }
+    .mob-submenu li a:hover { color: var(--white); }
+    .mob-submenu li a.mob-sub { padding-left: 24px; font-size: 13px; }
+    .mob-city-label {
+      padding: 8px 12px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .mob-simple-link {
+      display: block;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white-70);
     }
 
     /* ============================================================
@@ -1164,10 +1326,100 @@
           </a>
 
           <ul class="nav-links">
-            <li><a href="#communities">Communities</a></li>
-            <li><a href="#recent-sales">Listings</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#cta-strip">About</a></li>
+
+            <!-- Buyers -->
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                Buyers
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="https://www.nevadarealestategroup.com/work-with-a-realtor/" role="menuitem">Work With a Realtor</a>
+                <a href="https://www.nevadarealestategroup.com/property-search/" role="menuitem">Browse Homes for Sale</a>
+                <a href="https://www.nevadarealestategroup.com/get-alerts/" role="menuitem">Get Alerts</a>
+                <hr>
+                <a href="https://www.nevadarealestategroup.com/resources-for-buyers/" role="menuitem">Resources for Buyers</a>
+                <a href="https://www.nevadarealestategroup.com/first-time-home-buyers/" role="menuitem">First Time Home Buyers</a>
+                <a href="https://www.nevadarealestategroup.com/mortgage-calculator/" role="menuitem">Mortgage Calculator</a>
+                <a href="https://www.nevadarealestategroup.com/mortgage-pre-approval/" role="menuitem">Mortgage Pre-Approval</a>
+              </div>
+            </li>
+
+            <!-- Sell Your Home -->
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                Sell Your Home
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="nav-dropdown" role="menu">
+                <a href="https://www.nevadarealestategroup.com/work-with-a-realtor-seller/" role="menuitem">Work With a Realtor</a>
+                <a href="https://www.nevadarealestategroup.com/free-market-analysis/" role="menuitem">Free Market Analysis</a>
+                <a href="https://www.nevadarealestategroup.com/7-day-listing-agreement/" role="menuitem">7-Day Listing Agreement</a>
+                <hr>
+                <a href="https://www.nevadarealestategroup.com/resources-for-sellers/" role="menuitem">Resources for Sellers</a>
+              </div>
+            </li>
+
+            <!-- Communities -->
+            <li class="nav-item">
+              <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+                Communities
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="nav-dropdown nav-dropdown-communities" role="menu">
+                <!-- Las Vegas flyout -->
+                <div class="city-item">
+                  <div class="city-trigger">
+                    Las Vegas
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                  <div class="city-submenu" role="menu">
+                    <a href="https://www.nevadarealestategroup.com/summerlin/">Summerlin</a>
+                    <a href="https://www.nevadarealestategroup.com/centennial-hills/">Centennial Hills</a>
+                    <a href="https://www.nevadarealestategroup.com/mountains-edge/">Mountains Edge</a>
+                    <a href="https://www.nevadarealestategroup.com/red-rock-country-club/">Red Rock Country Club</a>
+                    <a href="https://www.nevadarealestategroup.com/the-lakes/">The Lakes</a>
+                    <a href="https://www.nevadarealestategroup.com/southern-highlands/">Southern Highlands</a>
+                    <a href="https://www.nevadarealestategroup.com/desert-shores/">Desert Shores</a>
+                    <a href="https://www.nevadarealestategroup.com/henderson/">Henderson / Anthem</a>
+                    <a href="https://www.nevadarealestategroup.com/green-valley/">Green Valley Ranch</a>
+                    <a href="https://www.nevadarealestategroup.com/lake-las-vegas/">Lake Las Vegas</a>
+                    <a href="https://www.nevadarealestategroup.com/macdonald-highlands/">MacDonald Highlands</a>
+                    <a href="https://www.nevadarealestategroup.com/north-las-vegas/">North Las Vegas</a>
+                  </div>
+                </div>
+                <!-- Reno flyout -->
+                <div class="city-item">
+                  <div class="city-trigger">
+                    Reno
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                  <div class="city-submenu" role="menu">
+                    <a href="https://www.nevadarealestategroup.com/damonte-ranch/">Damonte Ranch</a>
+                    <a href="https://www.nevadarealestategroup.com/double-diamond/">Double Diamond</a>
+                    <a href="https://www.nevadarealestategroup.com/south-reno/">South Reno</a>
+                    <a href="https://www.nevadarealestategroup.com/midtown-reno/">Midtown Reno</a>
+                    <a href="https://www.nevadarealestategroup.com/somersett/">Somersett</a>
+                    <a href="https://www.nevadarealestategroup.com/caughlin-ranch/">Caughlin Ranch</a>
+                    <a href="https://www.nevadarealestategroup.com/arrowcreek/">Arrowcreek</a>
+                    <a href="https://www.nevadarealestategroup.com/spanish-springs/">Spanish Springs</a>
+                    <a href="https://www.nevadarealestategroup.com/incline-village/">Incline Village</a>
+                    <a href="https://www.nevadarealestategroup.com/carson-city/">Carson City</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Blog -->
+            <li class="nav-item">
+              <a href="https://www.nevadarealestategroup.com/blog/">Blog</a>
+            </li>
+
+            <!-- About Us -->
+            <li class="nav-item">
+              <a href="https://www.nevadarealestategroup.com/about/">About Us</a>
+            </li>
+
           </ul>
 
           <a href="tel:+17252399950" class="nav-cta" aria-label="Call Nevada Real Estate Group">
@@ -1188,13 +1440,66 @@
 
     <!-- Mobile nav -->
     <div class="nav-mobile" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
-      <ul>
-        <li><a href="#communities" class="mobile-nav-link">Communities</a></li>
-        <li><a href="#recent-sales" class="mobile-nav-link">Listings</a></li>
-        <li><a href="#reviews" class="mobile-nav-link">Reviews</a></li>
-        <li><a href="#cta-strip" class="mobile-nav-link">About</a></li>
-      </ul>
-      <a href="tel:+17252399950" class="nav-cta">
+      <!-- Buyers -->
+      <div class="mob-group">
+        <button class="mob-group-toggle" aria-expanded="false">
+          Buyers
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="mob-submenu">
+          <li><a href="https://www.nevadarealestategroup.com/work-with-a-realtor/" class="mobile-nav-link">Work With a Realtor</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/property-search/" class="mobile-nav-link">Browse Homes for Sale</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/get-alerts/" class="mobile-nav-link">Get Alerts</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/resources-for-buyers/" class="mobile-nav-link">Resources for Buyers</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/first-time-home-buyers/" class="mobile-nav-link">First Time Home Buyers</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/mortgage-calculator/" class="mobile-nav-link">Mortgage Calculator</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/mortgage-pre-approval/" class="mobile-nav-link">Mortgage Pre-Approval</a></li>
+        </ul>
+      </div>
+      <!-- Sell Your Home -->
+      <div class="mob-group">
+        <button class="mob-group-toggle" aria-expanded="false">
+          Sell Your Home
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="mob-submenu">
+          <li><a href="https://www.nevadarealestategroup.com/work-with-a-realtor-seller/" class="mobile-nav-link">Work With a Realtor</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/free-market-analysis/" class="mobile-nav-link">Free Market Analysis</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/7-day-listing-agreement/" class="mobile-nav-link">7-Day Listing Agreement</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/resources-for-sellers/" class="mobile-nav-link">Resources for Sellers</a></li>
+        </ul>
+      </div>
+      <!-- Communities -->
+      <div class="mob-group">
+        <button class="mob-group-toggle" aria-expanded="false">
+          Communities
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="mob-submenu">
+          <li class="mob-city-label">Las Vegas</li>
+          <li><a href="https://www.nevadarealestategroup.com/summerlin/" class="mobile-nav-link mob-sub">Summerlin</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/centennial-hills/" class="mobile-nav-link mob-sub">Centennial Hills</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/mountains-edge/" class="mobile-nav-link mob-sub">Mountains Edge</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/southern-highlands/" class="mobile-nav-link mob-sub">Southern Highlands</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/henderson/" class="mobile-nav-link mob-sub">Henderson / Anthem</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/green-valley/" class="mobile-nav-link mob-sub">Green Valley Ranch</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/lake-las-vegas/" class="mobile-nav-link mob-sub">Lake Las Vegas</a></li>
+          <li class="mob-city-label" style="margin-top:8px">Reno</li>
+          <li><a href="https://www.nevadarealestategroup.com/damonte-ranch/" class="mobile-nav-link mob-sub">Damonte Ranch</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/double-diamond/" class="mobile-nav-link mob-sub">Double Diamond</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/somersett/" class="mobile-nav-link mob-sub">Somersett</a></li>
+          <li><a href="https://www.nevadarealestategroup.com/incline-village/" class="mobile-nav-link mob-sub">Incline Village</a></li>
+        </ul>
+      </div>
+      <!-- Simple links -->
+      <div class="mob-group">
+        <a href="https://www.nevadarealestategroup.com/blog/" class="mob-simple-link mobile-nav-link">Blog</a>
+      </div>
+      <div class="mob-group">
+        <a href="https://www.nevadarealestategroup.com/about/" class="mob-simple-link mobile-nav-link">About Us</a>
+      </div>
+
+      <a href="tel:+17252399950" class="nav-cta" style="margin-top:16px">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.12 2.74 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.46-.46a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
         </svg>
@@ -1904,11 +2209,20 @@
       const isOpen = mobileNav.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', isOpen);
     });
-    // Close mobile nav on link click
+    // Close mobile nav on leaf link click
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
       link.addEventListener('click', () => {
         mobileNav.classList.remove('open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+    // Mobile accordion toggles
+    document.querySelectorAll('.mob-group-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const submenu = btn.nextElementSibling;
+        const isOpen = btn.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+        if (submenu) submenu.classList.toggle('open', isOpen);
       });
     });
 
