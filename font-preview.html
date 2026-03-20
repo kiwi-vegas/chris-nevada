@@ -6,7 +6,7 @@
   <title>Font Preview — Nevada Real Estate Group</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&family=Bebas+Neue&family=Syne:wght@700;800&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400&family=Cinzel:wght@700;900&family=Abril+Fatface&family=Raleway:wght@800;900&family=Italiana&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #C9A84C;
@@ -55,7 +55,6 @@
       padding: 0 32px;
     }
 
-    /* ── Option cards ── */
     .options {
       padding: 48px 0 80px;
       display: flex;
@@ -72,9 +71,7 @@
       align-items: start;
     }
 
-    .option-meta {
-      padding-top: 6px;
-    }
+    .option-meta { padding-top: 6px; }
     .option-num {
       font-size: 11px;
       font-weight: 700;
@@ -92,7 +89,7 @@
     .option-style {
       font-size: 12px;
       color: var(--white-30);
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 16px;
     }
     .option-vibe {
@@ -111,165 +108,125 @@
       color: var(--gold);
     }
 
-    .option-preview {
-      flex: 1;
-    }
-
     .preview-card {
       background: var(--dark-3);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 8px;
       padding: 40px 44px;
     }
-
-    /* Current font for comparison */
-    .label-current {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white-30);
-      margin-bottom: 6px;
-    }
-
-    /* ── OPTION 1: Cormorant ── */
-    .opt1-h1 {
-      font-family: 'Cormorant', Georgia, serif;
-      font-size: 54px;
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-    .opt1-h2 {
-      font-family: 'Cormorant', Georgia, serif;
-      font-size: 34px;
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    /* ── OPTION 2: DM Serif Display ── */
-    .opt2-h1 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 52px;
-      font-weight: 400;
-      line-height: 1.05;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-    .opt2-h2 {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1.2;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-
-    /* ── OPTION 3: Fraunces ── */
-    .opt3-h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 52px;
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 10px;
-    }
-    .opt3-h2 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    /* ── OPTION 4: Bebas Neue ── */
-    .opt4-h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 72px;
-      font-weight: 400;
-      line-height: 0.95;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-    }
-    .opt4-h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 44px;
-      font-weight: 400;
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      margin-bottom: 12px;
-    }
-
-    /* ── OPTION 5: Syne ── */
-    .opt5-h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 50px;
-      font-weight: 800;
-      line-height: 1.0;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 10px;
-    }
-    .opt5-h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    /* ── Current (Playfair) for reference ── */
-    .opt0-h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 52px;
-      font-weight: 600;
-      line-height: 1.1;
-      color: var(--white-30);
-      margin-bottom: 10px;
-    }
-    .opt0-h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 32px;
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--white-30);
-      margin-bottom: 12px;
-    }
-
-    /* shared body copy */
-    .preview-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      color: var(--white-70);
-      line-height: 1.7;
-      max-width: 520px;
-    }
     .preview-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--white-30);
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 600;
       margin-bottom: 12px;
     }
     .gold-rule {
       width: 40px;
       height: 2px;
       background: var(--gold);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+    }
+    .preview-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--white-70);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-top: 14px;
+    }
+
+    /* ── Current (Playfair) for reference ── */
+    .opt0-h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 52px; font-weight: 600; line-height: 1.1;
+      color: rgba(255,255,255,0.25); margin-bottom: 10px;
+    }
+    .opt0-h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px; font-weight: 600; line-height: 1.2;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── A: Bodoni Moda ── */
+    .opt1-h1 {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: 56px; font-weight: 900; font-style: normal;
+      font-optical-sizing: auto;
+      line-height: 1.0; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .opt1-h2 {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: 34px; font-weight: 700;
+      font-optical-sizing: auto;
+      line-height: 1.15; color: var(--white);
+    }
+
+    /* ── B: Cinzel ── */
+    .opt2-h1 {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 44px; font-weight: 900;
+      line-height: 1.1; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .opt2-h2 {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 26px; font-weight: 700;
+      line-height: 1.25; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ── C: Abril Fatface ── */
+    .opt3-h1 {
+      font-family: 'Abril Fatface', Georgia, serif;
+      font-size: 58px; font-weight: 400;
+      line-height: 1.0; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .opt3-h2 {
+      font-family: 'Abril Fatface', Georgia, serif;
+      font-size: 36px; font-weight: 400;
+      line-height: 1.15; color: var(--white);
+    }
+
+    /* ── D: Raleway ── */
+    .opt4-h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 54px; font-weight: 900;
+      line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .opt4-h2 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 34px; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    /* ── E: Italiana ── */
+    .opt5-h1 {
+      font-family: 'Italiana', Georgia, serif;
+      font-size: 64px; font-weight: 400;
+      line-height: 1.0; letter-spacing: 0.02em;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .opt5-h2 {
+      font-family: 'Italiana', Georgia, serif;
+      font-size: 40px; font-weight: 400;
+      line-height: 1.15; letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    @media (max-width: 700px) {
+      .option { grid-template-columns: 1fr; gap: 24px; }
+      .opt1-h1, .opt3-h1, .opt4-h1 { font-size: 40px; }
+      .opt2-h1 { font-size: 30px; }
+      .opt5-h1 { font-size: 46px; }
     }
   </style>
 </head>
@@ -278,44 +235,43 @@
   <div class="page-header">
     <div class="container">
       <p>Nevada Real Estate Group</p>
-      <h1>Heading Font Options — <span>Pick Your Favorite</span></h1>
+      <h1>Heading Font Options — <span>Round Two</span></h1>
     </div>
   </div>
 
   <div class="container">
     <div class="options">
 
-      <!-- ── CURRENT (for comparison) ── -->
+      <!-- Current for reference -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Current</div>
           <div class="option-name">Playfair Display</div>
-          <div class="option-style">Classic editorial serif. Shown here for reference.</div>
+          <div class="option-style">Shown faded for reference only.</div>
           <div class="option-vibe">
-            <span class="tag" style="color:var(--white-30);border-color:rgba(255,255,255,0.1);">Traditional</span>
-            <span class="tag" style="color:var(--white-30);border-color:rgba(255,255,255,0.1);">Serif</span>
+            <span class="tag" style="color:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.08);">Outgoing</span>
           </div>
         </div>
         <div class="option-preview">
-          <div class="preview-card" style="opacity:0.5;">
+          <div class="preview-card" style="opacity:0.45;">
             <p class="preview-sub">Las Vegas, Nevada</p>
             <div class="gold-rule"></div>
             <div class="opt0-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt0-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── OPTION 1: Cormorant ── -->
+      <!-- A: Bodoni Moda -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Option A</div>
-          <div class="option-name">Cormorant</div>
-          <div class="option-style">High-contrast serif. Thinner strokes with powerful bold weight — looks sharp and editorial on dark backgrounds.</div>
+          <div class="option-name">Bodoni Moda</div>
+          <div class="option-style">The font of Vogue, Versace, and haute couture. Extreme thick-to-thin stroke contrast — nothing reads "luxury" more instantly than this on a dark background.</div>
           <div class="option-vibe">
-            <span class="tag">Bold</span>
-            <span class="tag">Editorial</span>
+            <span class="tag">High Fashion</span>
+            <span class="tag">Dramatic</span>
             <span class="tag">Luxury</span>
           </div>
         </div>
@@ -325,21 +281,21 @@
             <div class="gold-rule"></div>
             <div class="opt1-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt1-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── OPTION 2: DM Serif Display ── -->
+      <!-- B: Cinzel -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Option B</div>
-          <div class="option-name">DM Serif Display</div>
-          <div class="option-style">Modern editorial serif from Google's own design team. Clean, confident, and feels contemporary without losing the luxury tone.</div>
+          <div class="option-name">Cinzel</div>
+          <div class="option-style">Based on classical Roman stone inscriptions. All-caps, architectural, commanding — the kind of font used by law firms, jewelers, and five-star hotels. Pure authority.</div>
           <div class="option-vibe">
-            <span class="tag">Modern</span>
-            <span class="tag">Clean</span>
-            <span class="tag">Confident</span>
+            <span class="tag">Prestige</span>
+            <span class="tag">Architectural</span>
+            <span class="tag">Timeless</span>
           </div>
         </div>
         <div class="option-preview">
@@ -348,21 +304,21 @@
             <div class="gold-rule"></div>
             <div class="opt2-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt2-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── OPTION 3: Fraunces ── -->
+      <!-- C: Abril Fatface -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Option C</div>
-          <div class="option-name">Fraunces</div>
-          <div class="option-style">Variable optical-size serif with real personality. Slightly quirky ink-trap details make it feel premium and distinctive — a step away from generic.</div>
+          <div class="option-name">Abril Fatface</div>
+          <div class="option-style">Ultra-bold display serif inspired by 19th-century poster lettering. Maximum visual weight — stops people mid-scroll. Used by editorial brands that want headlines to hit hard.</div>
           <div class="option-vibe">
-            <span class="tag">Distinctive</span>
-            <span class="tag">Premium</span>
-            <span class="tag">Character</span>
+            <span class="tag">Bold</span>
+            <span class="tag">Editorial</span>
+            <span class="tag">High Impact</span>
           </div>
         </div>
         <div class="option-preview">
@@ -371,21 +327,21 @@
             <div class="gold-rule"></div>
             <div class="opt3-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt3-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── OPTION 4: Bebas Neue ── -->
+      <!-- D: Raleway -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Option D</div>
-          <div class="option-name">Bebas Neue</div>
-          <div class="option-style">All-caps condensed sans-serif. Maximum boldness and visual impact — favored by luxury brands, sports franchises, and high-end lifestyle sites.</div>
+          <div class="option-name">Raleway</div>
+          <div class="option-style">Elegant geometric sans-serif at maximum weight. Clean, modern, and sharp — feels closer to luxury automotive or high-end hospitality than real estate, in the best possible way.</div>
           <div class="option-vibe">
-            <span class="tag">Impactful</span>
-            <span class="tag">Bold</span>
             <span class="tag">Modern</span>
+            <span class="tag">Sleek</span>
+            <span class="tag">Confident</span>
           </div>
         </div>
         <div class="option-preview">
@@ -394,21 +350,21 @@
             <div class="gold-rule"></div>
             <div class="opt4-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt4-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
 
-      <!-- ── OPTION 5: Syne ── -->
+      <!-- E: Italiana -->
       <div class="option">
         <div class="option-meta">
           <div class="option-num">Option E</div>
-          <div class="option-name">Syne</div>
-          <div class="option-style">Geometric bold sans-serif. Very contemporary — feels like a modern agency or luxury tech brand. The most "different" option from current.</div>
+          <div class="option-name">Italiana</div>
+          <div class="option-style">Italian high-fashion serif — tall, wide, and graceful. Less aggressive than Bodoni but just as luxurious. The kind of font you'd see on a Milan storefront or a Côte d'Azur estate brochure.</div>
           <div class="option-vibe">
-            <span class="tag">Contemporary</span>
-            <span class="tag">Geometric</span>
-            <span class="tag">Edgy</span>
+            <span class="tag">Elegant</span>
+            <span class="tag">Fashion</span>
+            <span class="tag">Refined</span>
           </div>
         </div>
         <div class="option-preview">
@@ -417,7 +373,7 @@
             <div class="gold-rule"></div>
             <div class="opt5-h1">Summerlin Homes<br>For Sale</div>
             <div class="opt5-h2">Nevada's Most Celebrated<br>Master-Planned Community</div>
-            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon — 22,500 acres of refined desert living.</p>
+            <p class="preview-body">Perched along the western rim of the Las Vegas Valley, Summerlin backs directly against Red Rock Canyon.</p>
           </div>
         </div>
       </div>
